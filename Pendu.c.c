@@ -7,7 +7,7 @@
 void Nom_Joueur();
 
 /* Fonction d'affichage du pendu */
-int affichage(int Etat);
+void affichage(int Etat);
 
 /* Fonction qui transforme le mot en Underscore */
 void Mot_Underscore(int Taille_Mot, char Under[]);
@@ -174,8 +174,10 @@ int Verification_est_une_lettre(char *Caractere) {
 }
 
 // Fonction d'affichage du pendu
-int affichage(int Etat) {
-  if (Etat == 0) {
+void affichage(int Etat) {
+  switch (Etat) {
+    
+    default :
     printf("  ________  _______   ________   ________  ___  ___ \n");
     printf(
         " |\\   __  \\|\\  ___ \\ |\\   ___  \\|\\   ___ \\|\\  \\|\\  \\ \n");
@@ -188,38 +190,47 @@ int affichage(int Etat) {
     printf("    \\ \\__\\    \\ \\_______\\ \\__\\\\ \\__\\ \\_______\\ "
            "\\_______\\ \n");
     printf("     \\|__|     \\|_______|\\|__| \\|__|\\|_______|\\|_______| \n");
-  }
-  if (Etat == 1) {
-    printf("  __\n |  |______\n |         |\n |_________|\n ");
-  } // dessin du pendu en fonction du nb d'éssais
-  else if (Etat == 2) {
+    break;
+
+  case 1:
+    printf("  __\n |  |______\n |         |\n |_________|\n ");           // dessin du pendu en fonction du nb d'éssais
+    break;
+
+  case 2:
     printf("   |\n   |\n   |\n   |\n   |\n  _|_\n |   |______\n |          |\n "
            "|__________|\n ");
-  } else if (Etat == 3) {
+    break;
+    
+  case 3:
     printf("    ____\n   |\n   |\n   |\n   |\n   |\n  _|_\n |   |______\n |    "
            "      |\n |__________|\n ");
-  } else if (Etat == 4) {
+    break;
+
+  case 4:
     printf("    ____\n   |    |\n   |\n   |\n   |\n   |\n  _|_\n |   |______\n "
            "|          |\n |__________|\n ");
-  } else if (Etat == 5) {
+    break;
+
+  case 5:
     printf("    ____\n   |    |\n   |    O\n   |\n   |\n   |\n  _|_\n |   "
            "|______\n |          |\n |__________|\n ");
-  } else if (Etat == 6) {
+    break;
+
+  case 6:
     printf("    ____\n   |    |\n   |    O\n   |   / \\ \n   |\n   |\n  _|_\n "
            "|   |______\n |          |\n |__________|\n ");
-  } else if (Etat == 7) {
+    break;
+
+  case 7:
     printf("    ____\n   |    |\n   |    O\n   |   /|\\ \n   |    |\n   |\n  "
            "_|_\n |   |______\n |          |\n |__________|\n ");
-  } else if (Etat == 8) {
+  break;
+
+  case 8:
     printf("    ____\n   |    |\n   |    O\n   |   /|\\ \n   |    |\n   |   / "
            "\\ \n  _|_\n |   |______\n |          |\n |__________|\n ");
+    break;
   }
-
-  if (Etat == 8) {
-    printf("Perdu !\n");
-  }
-
-  return 0;
 }
 
 // Fonction qui vérifie si une lettre est dans le mot et remplace les
