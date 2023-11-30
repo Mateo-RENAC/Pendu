@@ -30,7 +30,7 @@ int main() {
   // Initialisations des variables
   char Main_Nom_Joueur[50];
   char Main_Mot[50];
-  int Incrementation_Occurence = 0;
+  int deja = 0;
   char *Client = (char *)malloc(sizeof(char));
   if (Client == NULL) {
     return -1; // EXIT_FAILURE
@@ -76,7 +76,8 @@ int main() {
       printf("%c ", *(lettresEntrees + i * sizeof(char)));
     }
     printf("\nChoisissez une lettre (en minuscule)\n");
-
+    
+    deja = 0;
     // Lire la lettre proposée par le joueur
     scanf("%s", Client);
 
@@ -89,10 +90,7 @@ int main() {
       for (size_t i = 0; i < 8 + Taille_Mot; i++) {
         if (strcmp(Client, (lettresEntrees + i * sizeof(char))) == 0) {
           printf("Lettre déjà entrée\n");
-          Incrementation_Occurence++;
-          if (Incrementation_Occurence >= 8) {
-              IncrementationEssais++;
-          }
+          deja = 1;
         }
       }
 
@@ -105,10 +103,12 @@ int main() {
         IncrementationMot++;
       }
 
-      // Si la lettre n'est pas dans le mot, incrémenter le nombre d'essais
-      if (!correct) {
-        printf("Cette lettre n'est pas dans le mot\n");
-        IncrementationEssais++;
+      // Si la lettre n'est pas dans le mot et qu'elle n'a pas été déjà entrée, incrémenter le nombre d'essais 
+      if (deja == 0) {
+        if (!correct) {
+          printf("Cette lettre n'est pas dans le mot\n");
+          IncrementationEssais++;
+        }
       }
 
       // Mettre à jour le tableau des lettres entrées
@@ -176,7 +176,7 @@ int Verification_est_une_lettre(char *Caractere) {
 // Fonction d'affichage du pendu
 void affichage(int Etat) {
   switch (Etat) {
-    
+
     default :
     printf("  ________  _______   ________   ________  ___  ___ \n");
     printf(
@@ -200,7 +200,7 @@ void affichage(int Etat) {
     printf("   |\n   |\n   |\n   |\n   |\n  _|_\n |   |______\n |          |\n "
            "|__________|\n ");
     break;
-    
+
   case 3:
     printf("    ____\n   |\n   |\n   |\n   |\n   |\n  _|_\n |   |______\n |    "
            "      |\n |__________|\n ");
